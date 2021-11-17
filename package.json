@@ -34,6 +34,7 @@
     "start": "yarn run start-app & yarn run start-server",
     "build": "craco build",
     "test": "craco test",
+    "test:coverage": "craco test --coverage .",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
