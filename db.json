@@ -1,0 +1,68 @@
+{
+  "user": {
+    "name": "John Doe",
+    "avatarURL": "http://localhost:3003/avatar.svg"
+  },
+  "todos": [
+    {
+      "id": 1,
+      "text": "Excepturi voluptatibus suscipit quis nihil ipsam ut saepe",
+      "completed": true,
+      "date": "2021-11-11"
+    },
+    {
+      "id": 2,
+      "text": "Placeat consequatur occaecati in",
+      "completed": true,
+      "date": "2021-11-11"
+    },
+    {
+      "id": 3,
+      "text": "Quas accusantium esse facilis",
+      "completed": true,
+      "date": "2021-11-11"
+    },
+    {
+      "id": 4,
+      "text": "Officia maxime minima ipsam soluta distinctio aspernatur quo",
+      "completed": false,
+      "date": "2021-11-10"
+    },
+    {
+      "id": 5,
+      "text": "Reprehenderit aliquam aperiam molestias voluptatum",
+      "completed": false,
+      "date": "2021-11-10"
+    },
+    {
+      "id": 6,
+      "text": "Cou remonter désirer madame soi lettre",
+      "completed": true,
+      "date": "2021-11-10"
+    },
+    {
+      "id": 7,
+      "text": "Temporibus asperiores officia esse",
+      "completed": true,
+      "date": "2021-11-10"
+    },
+    {
+      "id": 8,
+      "text": "By economic need they",
+      "completed": false,
+      "date": "2021-11-10"
+    },
+    {
+      "id": 9,
+      "text": "Davantage joli troubler quartier vieux masse.",
+      "completed": true,
+      "date": "2021-11-09"
+    },
+    {
+      "text": "wefwef",
+      "date": "2021-11-14",
+      "completed": false,
+      "id": 15
+    }
+  ]
+}
