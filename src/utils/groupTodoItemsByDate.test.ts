@@ -2,13 +2,6 @@ import { todoItems } from '__fixtures__/todoItems';
 
 import { groupTodoItemsByDate } from './groupTodoItemsByDate';
 
-// TODO:
-// - Mention regular and inline shapshots
-// - Show regenerating snapshots (including interactive mode)
-// - Show failing shapshots because of buggy behavior
-// - Show asymmetric matchers when some data is dynamic
-// - Point to best practices described here - https://jestjs.io/docs/snapshot-testing
-
 describe('groupTodoItemsByDate', () => {
   test('returns empty object for empty array of todos', () => {
     const groupedTodoItems = groupTodoItemsByDate([]);

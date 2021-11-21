@@ -12,6 +12,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!email || !password) return;
+
     onSubmit(email, password);
   };
 
@@ -21,7 +23,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         id="email"
         name="email"
         type="email"
-        required
         label="Email address"
         value={email}
         onChange={setEmail}
@@ -31,7 +32,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         id="password"
         name="password"
         type="password"
-        required
         label="Password"
         value={password}
         onChange={setPassword}

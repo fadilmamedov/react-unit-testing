@@ -27,7 +27,7 @@ describe('LoginForm', () => {
     const button = screen.getByRole('button', { name: /sign in/i });
     userEvent.click(button);
 
-    expect(onSubmitMock).not.toHaveBeenCalledWith();
+    expect(onSubmitMock).not.toHaveBeenCalled();
   });
 
   test('does not call onSubmit event handlers when password is not privided', () => {
@@ -39,6 +39,6 @@ describe('LoginForm', () => {
     const button = screen.getByRole('button', { name: /sign in/i });
     userEvent.click(button);
 
-    expect(onSubmitMock).not.toHaveBeenCalledWith();
+    expect(onSubmitMock).not.toHaveBeenCalled();
   });
 });

@@ -22,12 +22,12 @@ export const UserInfo: React.FC<UserInfoProps> = ({ fullName, avatarURL, classNa
         {avatarURL ? (
           <img src={avatarURL} alt={fullName} className="w-full h-full" />
         ) : (
-          getNameInitials(fullName ?? '')
+          getNameInitials(fullName ?? 'Anonymous')
         )}
       </div>
 
       <span className="text-sm text-gray-700 font-medium select-none">
-        {fullName ? fullName : 'Anonymous'}
+        {fullName ?? 'Anonymous'}
       </span>
     </div>
   );
