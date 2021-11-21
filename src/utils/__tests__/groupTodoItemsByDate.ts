@@ -1,4 +1,5 @@
-import { todoItems } from '../__fixtures__/groupTodoItemsByDate';
+import { todoItems } from '__fixtures__/todoItems';
+
 import { groupTodoItemsByDate } from '../groupTodoItemsByDate';
 
 // TODO:

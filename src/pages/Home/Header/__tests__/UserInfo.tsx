@@ -1,13 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { getNameInitials } from 'utils/getNameInitials';
+import * as getNameInitialsModule from 'utils/getNameInitials';
 
 import { UserInfo } from '../UserInfo';
-
-jest.mock('utils/getNameInitials', () => {
-  return {
-    getNameInitials: jest.fn(),
-  };
-});
 
 describe('UserInfo', () => {
   afterEach(() => {
@@ -37,8 +31,8 @@ describe('UserInfo', () => {
   });
 
   test('renders name initials when avatar is missing', () => {
-    const getNameInitialsMock = getNameInitials as jest.Mock;
-    getNameInitialsMock.mockImplementation(() => 'JD');
+    jest.spyOn(getNameInitialsModule, 'getNameInitials').mockImplementation(() => 'JD');
+
     render(<UserInfo fullName="John Doe" />);
 
     const initials = screen.getByText(/JD/i);

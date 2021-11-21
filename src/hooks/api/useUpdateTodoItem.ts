@@ -1,41 +1,38 @@
 import { updateTodo } from 'api/todos';
 import { useMutation, useQueryClient } from 'react-query';
-import { useRecoilValue } from 'recoil';
-import { searchStringState } from 'state/todos';
 import { TodoItem } from 'types/todo';
+
+import { useTodosQuery } from './useTodosQuery';
 
 type Context = {
   previousTodoItems: TodoItem[];
 };
 
 export const useUpdateTodoItem = () => {
-  const todosSearchString = useRecoilValue(searchStringState);
+  const { baseQuery, searchQuery } = useTodosQuery();
   const queryClient = useQueryClient();
 
   return useMutation(updateTodo, {
     onMutate: async (todoItem) => {
-      await queryClient.cancelQueries('todos');
+      await queryClient.cancelQueries(baseQuery);
 
-      const previousTodoItems = queryClient.getQueryData('todos');
+      const previousTodoItems = queryClient.getQueryData(searchQuery);
 
-      // TODO: Check result on failure
-      queryClient.setQueryData(
-        ['todos', todosSearchString],
-        (currentTodoItems: TodoItem[] = []) => {
-          const index = currentTodoItems.findIndex((f) => f.id === todoItem.id);
+      // TODO: don't mutate query data (use immer)
+      queryClient.setQueryData(searchQuery, (currentTodoItems: TodoItem[] = []) => {
+        const index = currentTodoItems.findIndex((f) => f.id === todoItem.id);
 
-          currentTodoItems.splice(index, 1, todoItem);
-          return currentTodoItems;
-        }
-      );
+        currentTodoItems.splice(index, 1, todoItem);
+        return currentTodoItems;
+      });
 
       return { previousTodoItems } as Context;
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData('todos', (context as Context).previousTodoItems);
+      queryClient.setQueryData(searchQuery, (context as Context).previousTodoItems);
     },
     onSettled: () => {
-      queryClient.invalidateQueries('todos');
+      queryClient.invalidateQueries(baseQuery);
     },
   });
 };

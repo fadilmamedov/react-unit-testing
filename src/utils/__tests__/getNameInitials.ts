@@ -1,8 +1,5 @@
 import { getNameInitials } from '../getNameInitials';
 
-// TODO:
-// - Show TDD
-
 describe('getNameInitials', () => {
   test('returns empty string for empty name', () => {
     const initials = getNameInitials('');

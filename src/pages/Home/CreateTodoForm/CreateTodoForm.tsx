@@ -10,6 +10,11 @@ export const CreateTodoForm: React.FC<CreateTodoFormProps> = ({ onCreate }) => {
 
   const handleAddTaskFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (text.length === 0) {
+      return;
+    }
+
     onCreate(text);
     setText('');
   };

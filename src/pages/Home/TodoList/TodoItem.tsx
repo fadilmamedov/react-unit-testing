@@ -2,7 +2,7 @@ import { TrashIcon } from '@heroicons/react/solid';
 import cls from 'classnames';
 import React from 'react';
 
-interface TodoItemProps {
+export interface TodoItemProps {
   text: string;
   completed?: boolean;
   onComplete: () => void;

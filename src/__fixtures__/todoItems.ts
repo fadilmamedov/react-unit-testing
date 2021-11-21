@@ -1,3 +1,5 @@
+import { TodoItem } from 'types/todo';
+
 export const todoItems = [
   {
     id: 1,
@@ -17,4 +19,4 @@ export const todoItems = [
     completed: false,
     text: 'third todo item',
   },
-];
+] as TodoItem[];

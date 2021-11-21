@@ -1,26 +1,24 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import { useUser } from 'hooks/api/useUser';
+import * as useUserModule from 'hooks/api/useUser';
 import { Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 import { Header } from '../Header';
 
-jest.mock('hooks/api/useUser', () => {
-  return {
-    useUser: jest.fn(),
-  };
-});
-
 describe('Header', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('redirects to login page after logout', async () => {
+    jest.spyOn(useUserModule, 'useUser').mockImplementation(() => ({
+      user: undefined,
+      isLoading: false,
+    }));
+
     const history = createMemoryHistory();
     history.push('/');
-
-    const useUserMock = useUser as jest.Mock;
-    useUserMock.mockImplementation(() => ({
-      user: null,
-    }));
 
     render(
       <RecoilRoot>

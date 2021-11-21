@@ -25,6 +25,10 @@ export const createTodo = async (todoItem: Omit<TodoItem, 'id'>) => {
     body: JSON.stringify(todoItem),
   });
 
+  if (!response.ok) {
+    throw new Error('Failed to create todo item');
+  }
+
   const data = await response.json();
   return data as TodoItem;
 };
@@ -38,6 +42,10 @@ export const updateTodo = async (todoItem: TodoItem) => {
     body: JSON.stringify(todoItem),
   });
 
+  if (!response.ok) {
+    throw new Error('Failed to update todo item');
+  }
+
   const data = await response.json();
   return data as TodoItem;
 };
@@ -46,6 +54,10 @@ export const removeTodo = async (todoItem: TodoItem) => {
   const response = await fetch(`${API_HOST}/todos/${todoItem.id}`, {
     method: 'DELETE',
   });
+
+  if (!response.ok) {
+    throw new Error('Failed to remove todo item');
+  }
 
   const data = await response.json();
   return data as TodoItem;
