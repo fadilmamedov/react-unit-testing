@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import * as getNameInitialsModule from 'utils/getNameInitials';
 
-import { UserInfo } from '../UserInfo';
+import { UserInfo } from './UserInfo';
 
 describe('UserInfo', () => {
   afterEach(() => {

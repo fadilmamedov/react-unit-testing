@@ -1,4 +1,4 @@
-import { getNameInitials } from '../getNameInitials';
+import { getNameInitials } from './getNameInitials';
 
 describe('getNameInitials', () => {
   test('returns empty string for empty name', () => {

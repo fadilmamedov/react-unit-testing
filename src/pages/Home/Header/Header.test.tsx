@@ -4,7 +4,7 @@ import * as useUserModule from 'hooks/api/useUser';
 import { Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import { Header } from '../Header';
+import { Header } from './Header';
 
 describe('Header', () => {
   afterEach(() => {

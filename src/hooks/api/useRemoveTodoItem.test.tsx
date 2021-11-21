@@ -6,8 +6,8 @@ import React from 'react';
 import { QueryClientProvider } from 'react-query';
 import { createQueryClient } from 'testUtils/queryClient';
 
-import { useCreateTodoItem } from '../useCreateTodoItem';
-import * as useTodosQueryModule from '../useTodosQuery';
+import { useRemoveTodoItem } from './useRemoveTodoItem';
+import * as useTodosQueryModule from './useTodosQuery';
 
 const BASE_QUERY = 'todos';
 const SEARCH_QUERY = ['todos', ''];
@@ -25,7 +25,7 @@ const setupQueryClient = () => {
   return { wrapper, queryClient };
 };
 
-describe('useCreateTodoItem', () => {
+describe('useRemoveTodoItem', () => {
   beforeAll(() => {
     server.listen({ onUnhandledRequest: 'error' });
   });
@@ -39,9 +39,9 @@ describe('useCreateTodoItem', () => {
     jest.restoreAllMocks();
   });
 
-  test('creates todo item with optimistic update', async () => {
+  test('removes todo item with optimistic update', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/todos`, (_, response, context) => {
+      rest.delete(`${process.env.REACT_APP_API_HOST}/todos/:todoID`, (_, response, context) => {
         return response(context.json({}));
       })
     );
@@ -51,35 +51,21 @@ describe('useCreateTodoItem', () => {
       searchQuery: SEARCH_QUERY,
     }));
 
-    const { wrapper, queryClient } = setupQueryClient();
-    const { result: hook } = renderHook(() => useCreateTodoItem(), { wrapper });
+    const todoItemToRemove = todoItems[0];
 
-    await hook.current.mutateAsync({
-      text: 'new todo item',
-      completed: false,
-      date: '2021-11-10',
-    });
+    const { wrapper, queryClient } = setupQueryClient();
+    const { result: hook } = renderHook(() => useRemoveTodoItem(), { wrapper });
+
+    await hook.current.mutateAsync(todoItemToRemove);
 
     const result = queryClient.getQueryData(SEARCH_QUERY);
     expect(result).toMatchInlineSnapshot(`
       Array [
         Object {
-          "completed": true,
-          "date": "2021-11-10",
-          "id": 1,
-          "text": "first todo item",
-        },
-        Object {
           "completed": false,
           "date": "2021-11-10",
           "id": 2,
           "text": "second todo item",
-        },
-        Object {
-          "completed": false,
-          "date": "2021-11-10",
-          "id": 0,
-          "text": "new todo item",
         },
         Object {
           "completed": false,
@@ -91,9 +77,9 @@ describe('useCreateTodoItem', () => {
     `);
   });
 
-  test('removes created item after failed request', async () => {
+  test('restores removed item after failed request', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/todos`, (_, response, context) => {
+      rest.delete(`${process.env.REACT_APP_API_HOST}/todos/:todoID`, (_, response, context) => {
         return response(context.status(500), context.json({}));
       })
     );
@@ -103,15 +89,13 @@ describe('useCreateTodoItem', () => {
       searchQuery: SEARCH_QUERY,
     }));
 
+    const todoItemToRemove = todoItems[0];
+
     const { wrapper, queryClient } = setupQueryClient();
-    const { result: hook } = renderHook(() => useCreateTodoItem(), { wrapper });
+    const { result: hook } = renderHook(() => useRemoveTodoItem(), { wrapper });
 
     try {
-      await hook.current.mutateAsync({
-        text: 'new todo item',
-        completed: false,
-        date: '2021-11-10',
-      });
+      await hook.current.mutateAsync(todoItemToRemove);
     } catch {}
 
     const result = queryClient.getQueryData(SEARCH_QUERY);

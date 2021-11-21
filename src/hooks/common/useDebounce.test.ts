@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
 
-import { useDebounce } from '../useDebounce';
+import { useDebounce } from './useDebounce';
 
 // Steps:
 // - Write first test - 'returns initial value on mount'

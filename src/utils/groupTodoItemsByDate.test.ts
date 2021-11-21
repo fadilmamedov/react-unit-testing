@@ -1,6 +1,6 @@
 import { todoItems } from '__fixtures__/todoItems';
 
-import { groupTodoItemsByDate } from '../groupTodoItemsByDate';
+import { groupTodoItemsByDate } from './groupTodoItemsByDate';
 
 // TODO:
 // - Mention regular and inline shapshots

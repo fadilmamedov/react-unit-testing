@@ -8,12 +8,12 @@ import { QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import { createQueryClient } from 'testUtils/queryClient';
 
-import { HomePage } from '../HomePage';
+import { HomePage } from './HomePage';
 
-jest.mock('../Header/Header', () => ({
+jest.mock('./Header/Header', () => ({
   Header: () => 'header',
 }));
-jest.mock('../TodoList/TodoList', () => ({
+jest.mock('./TodoList/TodoList', () => ({
   TodoList: () => 'todo list',
 }));
 

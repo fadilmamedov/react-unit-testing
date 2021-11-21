@@ -7,7 +7,7 @@ import { QueryClientProvider } from 'react-query';
 import { Router } from 'react-router-dom';
 import { createQueryClient } from 'testUtils/queryClient';
 
-import { LoginPage } from '../LoginPage';
+import { LoginPage } from './LoginPage';
 
 const server = setupServer();
 

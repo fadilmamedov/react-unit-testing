@@ -12,9 +12,9 @@ import { QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import { createQueryClient } from 'testUtils/queryClient';
 
-import * as loadingIndicatorModule from '../LoadingIndicator';
-import * as todoItemModule from '../TodoItem';
-import { TodoList } from '../TodoList';
+import * as loadingIndicatorModule from './LoadingIndicator';
+import * as todoItemModule from './TodoItem';
+import { TodoList } from './TodoList';
 
 const server = setupServer(
   rest.get(`${process.env.REACT_APP_API_HOST}/todos`, (_, response, context) => {

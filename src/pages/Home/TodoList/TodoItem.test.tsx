@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { TodoItem } from '../TodoItem';
+import { TodoItem } from './TodoItem';
 
 describe('TodoItem', () => {
   test('renders text', () => {

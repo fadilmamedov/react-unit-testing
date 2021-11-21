@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { CreateTodoForm } from '../CreateTodoForm';
+import { CreateTodoForm } from './CreateTodoForm';
 
 describe('CreateTodoForm', () => {
   test('input has focus when component is shown', () => {
