@@ -27,7 +27,7 @@ describe('useDebounce', () => {
     expect(result.current).toBe(1);
   });
 
-  test('keeps initial value after updates', async () => {
+  test('keeps initial value after updates', () => {
     const { result, rerender } = renderHook(({ value }) => useDebounce(value), {
       initialProps: { value: 1 },
     });
