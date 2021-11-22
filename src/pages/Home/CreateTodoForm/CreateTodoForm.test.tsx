@@ -21,7 +21,6 @@ describe('CreateTodoForm', () => {
     expect(onCreateMock).toHaveBeenCalledWith('New todo item');
   });
 
-  // TODO: Show TDD for this single test after we found this bug
   test('does not call onCreate handler when sumbitting with empty text', () => {
     const onCreateMock = jest.fn();
     render(<CreateTodoForm onCreate={onCreateMock} />);
