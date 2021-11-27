@@ -35,13 +35,13 @@ describe('useRemoveTodoItem', () => {
   });
 
   afterEach(() => {
-    server.restoreHandlers();
+    server.resetHandlers();
     jest.restoreAllMocks();
   });
 
   test('removes todo item with optimistic update', async () => {
     server.use(
-      rest.delete(`${process.env.REACT_APP_API_HOST}/todos/:todoID`, (_, response, context) => {
+      rest.delete('**/todos/:todoID', (_, response, context) => {
         return response(context.json({}));
       })
     );
@@ -79,7 +79,7 @@ describe('useRemoveTodoItem', () => {
 
   test('restores removed item after failed request', async () => {
     server.use(
-      rest.delete(`${process.env.REACT_APP_API_HOST}/todos/:todoID`, (_, response, context) => {
+      rest.delete('**/todos/:todoID', (_, response, context) => {
         return response(context.status(500), context.json({}));
       })
     );

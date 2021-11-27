@@ -35,13 +35,13 @@ describe('useCreateTodoItem', () => {
   });
 
   afterEach(() => {
-    server.restoreHandlers();
+    server.resetHandlers();
     jest.restoreAllMocks();
   });
 
   test('creates todo item with optimistic update', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/todos`, (_, response, context) => {
+      rest.post('**/todos', (_, response, context) => {
         return response(context.json({}));
       })
     );
@@ -93,7 +93,7 @@ describe('useCreateTodoItem', () => {
 
   test('removes created item after failed request', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/todos`, (_, response, context) => {
+      rest.post('**/todos', (_, response, context) => {
         return response(context.status(500), context.json({}));
       })
     );

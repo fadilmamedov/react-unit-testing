@@ -33,12 +33,12 @@ describe('LoginPage', () => {
   });
 
   afterEach(() => {
-    server.restoreHandlers();
+    server.resetHandlers();
   });
 
   test('redirects to home page after a successful login', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/login`, (_, response, context) =>
+      rest.post('**/login', (_, response, context) =>
         response(
           context.json({
             data: {
@@ -68,7 +68,7 @@ describe('LoginPage', () => {
 
   test('stays on login page after failed login', async () => {
     server.use(
-      rest.post(`${process.env.REACT_APP_API_HOST}/login`, (_, response, context) =>
+      rest.post('**/login', (_, response, context) =>
         response(
           context.status(401),
           context.json({

@@ -54,7 +54,7 @@ describe('TodoList', () => {
   });
 
   afterEach(() => {
-    server.restoreHandlers();
+    server.resetHandlers();
     jest.restoreAllMocks();
   });
 
